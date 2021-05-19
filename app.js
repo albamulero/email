@@ -56,12 +56,26 @@ app.post('/actualizarUsuario', function(req, res, next){
   var email = req.body.email
   var password = req.body.password
 
-  crudPromesas.actualizarUsuario(email, password, function(test){
-    
-    console.log(JSON.stringify(test));
-    return  res.status(200).json(test)
+  let status = 0
 
-  }) 
+// REvisar si tenemos sesion activa
+
+  if (req.body.email =! null){
+
+    crudPromesas.actualizarUsuario(email, password, function(test){
+    status = 200
+
+    console.log(JSON.stringify(test));
+
+
+  }) }else{
+    status = 402
+    test = {'success':'False'}
+  }
+
+  return res.status(status).json(test)
+
+
 })
 
 // --- MOSTRAR USUARIO ---

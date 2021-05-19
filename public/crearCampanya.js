@@ -1,3 +1,6 @@
+
+
+
 ////////////////////////////////
 // Autor. Alba Mulero
 // Fecha creacion: 27/04/2021
@@ -10,9 +13,6 @@
 $('#btn-agregar-nueva-campanya').click(function() {
     agregar_nueva_campanya()
 })
-
-
-
 
 
 ///////////////////////////////
