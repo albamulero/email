@@ -13,6 +13,14 @@
     <link rel="icon" href="./img/favicon.png">
 
     <script>
+
+        let s1 = sessionStorage.getItem('session')
+        
+        if(s1 == null) {
+            
+            $(location).attr("href", "/");
+        }
+
         $(document).ready(function(){
             $.getScript("./crearCampanya.js")
         })   

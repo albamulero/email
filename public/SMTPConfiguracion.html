@@ -14,6 +14,14 @@
     <link rel="icon" href="./img/favicon.png">
 
     <script>
+
+        let s1 = sessionStorage.getItem('session')
+        
+        if(s1 == null) {
+            
+            $(location).attr("href", "/");
+        }
+
         // Se ejecuta cuando la pagina se termina de cargar y luego ejecuta los scripts
         $(document).ready(function(){       
             

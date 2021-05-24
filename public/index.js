@@ -44,8 +44,17 @@ $(document).ready(function() {
 
             if(response.success == "true") {
                 console.log("success es True")
-                
-                $(location).attr("href", "/entrada.html");
+
+                if (typeof(Storage) !== "undefined") {
+          
+                    sessionStorage.setItem( 'session', response.id);
+                    
+                    $(location).attr("href", "/entrada.html");
+
+                } else {
+          
+                    console.log('no se soporte estorage')
+                }
 
             }else {
                 console.log("success es False")

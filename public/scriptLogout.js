@@ -39,8 +39,17 @@ function logout(e) {
         type: 'GET'
 
     }).then(function(response) {
-        
-        $(location).attr("href", "/index.html");
+
+        if (typeof(Storage) !== "undefined") {
+          
+            sessionStorage.removeItem( 'session', response.id);
+            
+            $(location).attr("href", "/");
+
+        } else {
+  
+            console.log('no se soporte estorage')
+        }
     
     }).catch(function(e) {
         console.log(e);

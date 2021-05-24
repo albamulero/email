@@ -672,9 +672,14 @@ async function eliminar_campanya(id, callback) {
 
     try {
 
-        let sql = `SELECT * FROM plantillas_correo WHERE id = '${id}'`
-        let result = await query(sql)        
+        let plantilla = 0
+        
+        for (i = 0; i < plantilla.length; i++) {
 
+            let sql = `SELECT * FROM plantillas_correo WHERE id = '${id}'`
+            await query(sql)        
+        }
+        
         if (result.length == 0) {
 
             message = 'No se ha podido eliminar'
@@ -687,8 +692,7 @@ async function eliminar_campanya(id, callback) {
 
             message = 'Eliminado con exito'
             success = true
-
-        } 
+        }
 
     } catch (err) {
 

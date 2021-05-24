@@ -16,6 +16,13 @@
 
     <script>
 
+        let s1 = sessionStorage.getItem('session')
+        
+        if(s1 == null) {
+            
+            $(location).attr("href", "/");
+        }
+
         $(document).ready(function(){
             // Carga script
             $.getScript("./envioCampanya.js")

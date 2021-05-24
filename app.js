@@ -131,7 +131,7 @@ app.post('/alta', function(req, res, next){
     window.location.href = "http://localhost:3000";
 
   } else {
-    console.log("Sseion activa");
+    console.log("Seion activa");
   }
 
   crudPromesas.alta(id, email, nombre, apellido, pais, id_usuarios, function(test){

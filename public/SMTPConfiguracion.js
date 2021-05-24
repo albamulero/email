@@ -32,22 +32,29 @@ jQuery.ajax({
 }).then(function(response) {
     console.log('Response mostrar', response);
 
+    if (typeof(Storage) !== "undefined") {
+          
+        sessionStorage.setItem( 'session', response.id);
 
-    if(response.length == 0) {
-        console.log("El formulario esta vacio");
-        editar = false
+        if(response.length == 0) {
+            console.log("El formulario esta vacio");
+            editar = false
 
-    }else{
-        console.log("El usuario esta completo");
-        editar = true
+        }else{
+            console.log("El usuario esta completo");
+            editar = true
 
-        $('#hostConfig').val(response[0].host)
-        $('#portConfig').val(response[0].port)
-        $('#emailConfig').val(response[0].send_mail)
-        $('#smtpencrytionConfig').val(response[0].SMTP_encryption)
-        $('#smptauthencationConfig').val(response[0].SMTP_authentication)
-        $("#usernameConfig").val(response[0].username)
-        $("#passwordConfig").val(response[0].password)
+            $('#hostConfig').val(response[0].host)
+            $('#portConfig').val(response[0].port)
+            $('#emailConfig').val(response[0].send_mail)
+            $('#smtpencrytionConfig').val(response[0].SMTP_encryption)
+            $('#smptauthencationConfig').val(response[0].SMTP_authentication)
+            $("#usernameConfig").val(response[0].username)
+            $("#passwordConfig").val(response[0].password)
+        }
+    } else {
+
+        console.log('no se soporte estorage')
     }
 
 })
