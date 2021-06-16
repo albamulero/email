@@ -22,7 +22,7 @@ function upload(evt) {
                 data = $.csv.toArrays(csvData);
                 if (data && data.length > 0) {
                   alert('Imported -' + data.length + '- rows successfully!');
-                  console.log(data)
+                  console.log("27", data)
                   // Recorrer el array y enviar los datos al servidor    
                   for(i = 0; i < data.length; i++) {
                     console.log(i);
@@ -34,7 +34,7 @@ function upload(evt) {
                         nombre: `${data[i][0]}`,
                         apellido: `${data[i][1]}`,
                         pais: `${data[i][3]}`,
-                        id_usuarios:"e1"
+                        id_usuarios: sessionStorage.getItem('session')
                     }
                     console.log(data_alta)
                     jQuery.ajax({
@@ -46,13 +46,15 @@ function upload(evt) {
                     }).then(function(response) {
                         console.log(response);
                     })
-                  }
-                } else {
-                    alert('No data to import!');
                 }
-            };
-            reader.onerror = function() {
-                alert('Unable to read ' + file.fileName);
-            };
-        }
-    } 
+            } else {
+                alert('No data to import!');
+            }
+        };
+        reader.onerror = function() {
+            alert('Unable to read ' + file.fileName);
+            
+        };
+        
+    }
+} 

@@ -10,6 +10,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
         <link href="/css/styles.css" rel="stylesheet">
+        <link rel="icon" href="./img/favicon.png">
         
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
         
@@ -21,7 +22,30 @@
             }
 
             $(document).ready(function(){
-                // Carga script
+
+                // Recibimos la pulsacion del boton de acceso a campañas
+                // Si la sesion activa corresponde al usuario gutierrez@hornetsecurity.columna
+                // no hace nada, en caso contario enseña un mensaje que dice, funcion no disponbile
+                // g6qoBzB3rk
+
+
+                $("#btn_crearCampanya").click(function() {
+
+                if(typeof(Storage) !== "undefined") {
+
+                    if (sessionStorage.getItem('session') == 'g6qoBzB3rk'){
+                        $(location).attr("href", "./crearCampanya.html")
+                    
+                    }else{
+                    
+                        $(location).attr("href", "./entrada.html")
+                        alert("Aceso denegado")
+                    }
+                }
+
+            })
+            
+            // Carga script
                 $.getScript("./scriptLogout.js")
             })
             
@@ -78,20 +102,20 @@
                 <div class="col">
                     <div class="card-body">
                         <h5 class="card-title">Envio de campañas</h5>
-                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        <p class="card-text">Desde aqui puedes seleccionar la campaña que se enviara automaticamente a todos tus contactos.</p>
                         <p>
                             <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                                <a class="btn" href="./envioCampanya.html">+</a>
+                                <a class="btn" id="btn_envioCampanya" href="./envioCampanya.html">+</a>
                             </div>
                         </p>
                     </div>            
                     <div class="col">
                         <div class="card-body">
                             <h5 class="card-title">Crear campañas</h5>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            <p class="card-text">Acceso restringido. Aqui se pueden crear las plantillas de correo electronico.</p>
                             <p>
                                 <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                                    <a class="btn" href="./crearCampanya.html"><i class="bi bi-eye"></i></a>
+                                    <a class="btn" id="btn_crearCampanya"><i class="bi bi-eye"></i></a>
                                 </div>
                             </p>
                         </div>
@@ -99,9 +123,9 @@
                     <div class="col">
                         <div class="card-body">
                             <h5 class="card-title">Contactos</h5>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            <p class="card-text">Aqui se realiza el mantenimiento de todas las cuentas de correos a la que se enviaran los correos electronicos.</p>
                             <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                                <a class="btn" href="./contactos.html"><i class="bi bi-phone"></i></a>
+                                <a class="btn" id="btn_contactos" href="./contactos.html"><i class="bi bi-phone"></i></a>
                             </div>
                         </div>
                     </div>

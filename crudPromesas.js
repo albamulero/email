@@ -478,10 +478,7 @@ async function mostrar_config_email(id_usuarios, callback) {
     try {
 
         let sql = `SELECT * FROM SMPT_configuracion WHERE id_usuarios = '${id_usuarios}'`
-        console.log("Sentencia SQL", sql);
         let result = await query(sql)
-        
-        console.log("Result" ,result);
 
         if (result.length == 0) {
 

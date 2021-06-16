@@ -3,13 +3,11 @@ const util = require('util')
 const bcrypt = require ('bcrypt')
 const { database } = require('./utilidades/config_db')
 
-var conexion = mysql.createConnection(database)
-
-
 // --- LOGIN ---
 
 async function login (email, password, callback) {
 
+    let conexion = mysql.createConnection(database)
     let id = ''
 
     //  NODE NATIVE PROMISIFY
@@ -20,6 +18,8 @@ async function login (email, password, callback) {
 
         let sql = `SELECT * FROM usuarios WHERE email = '${email}'`          // SQL (Buscara si existe el email que introducen)
         let result = await query(sql)
+
+
         console.log(result[0].id);
         
         let compararPassword = await bcrypt.compare(password, result[0].password)           // Comparamos el password
@@ -46,8 +46,7 @@ async function login (email, password, callback) {
 
     } finally {
 
-        conexion.end()
-
+        conexion.end()  // Cerramos la conexion....
         callback({'success':`${success}`, 'message':`${message}`, 'id':`${id}`, 'email':`${email}`})
     }
     

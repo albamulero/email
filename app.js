@@ -5,7 +5,6 @@ const morgan = require('morgan')
 
 const crudPromesas = require('./crudPromesas')
 const login = require('./login')
-const { restart } = require('nodemon')
 
 const app = express()   // Servidor expres
 const port = 3000
@@ -305,10 +304,9 @@ app.post('/mostrar_config_email', function(req, res, next){
   
   if (id_usuarios == null) {
     console.log("Secion nula");
-    window.location.href = "http://localhost:3000";
   
   } else {
-    console.log("Sseion activa");
+    console.log("Sesion activa");
   }
 
   crudPromesas.mostrar_config_email(id_usuarios, function(test){

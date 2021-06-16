@@ -16,11 +16,10 @@ async function enviarCorreo(email_usuario) {
     let email = {
         from:"pruebasalba@mailshield.com.mx",            // Remitente
         to:`${email_usuario}`,                                   // Destinatario
-        subject:"Pruebas de correo electronico",         // Asusto del correo
+        subject:"Confirmacion de registro",         // Asusto del correo
         html:`
         <div>
-            <p>Esto es un prueba</p>
-            <p>Enviendo correos electronicos con Nodemailer en NodeJS</p>
+            <p>Le informamos que su reguistro en MALING se ha realizado </p>
         </div>`
     }
 

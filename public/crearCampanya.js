@@ -1,6 +1,3 @@
-
-
-
 ////////////////////////////////
 // Autor. Alba Mulero
 // Fecha creacion: 27/04/2021
@@ -59,7 +56,7 @@ jQuery.ajax({
             columna2.innerHTML = response[i].descripcion_larga
 
             var columnaEditar = document.createElement('td')
-            columnaEditar.innerHTML = '<button class="btn btn-editar me-md-2 " type="button" data-bs-toggle="modal" data-bs-target="#modal_editar" data-id= '+response[i].id+' data-titulo='+response[i].descripcion_corta+' data-subtitulo='+response[i].descripcion_larga+' data-plantilla='+response[i].plantilla+'><i class="bi bi-pencil"></i></button><div class="modal fade" id="modal_editar" tabindex="-1" aria-labelledby="editar" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button></div><div class="modal-body"><form><h2>Editar campaña</h2><div class="col-auto"><label class="form-label">Id</label></div><div class="mb-3"><input type="string" class="form-control" id="id_modal" name="id"></div><div class="mb-3"><label class="form-label">Titulo</label><input type="string" class="form-control" id="titulo" name="descripcionCorta"></div><div class="mb-3"><label class="form-label">Subtitulo</label><input type="string" class="form-control" id="subtitulo" name="descripcionLarga"></div><div class="mb-3"><label class="form-label">Plantilla</label><textarea id="plantilla" name="plantilla" cols="57" rows="6"></textarea></div><br><div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button><button type="button" class="btn btn-editar" id="editar">Editar</button></div></form></div></div></div>'
+            columnaEditar.innerHTML = '<button class="btn btn-editar me-md-2 " type="button" data-bs-toggle="modal" data-bs-target="#modal_editar" data-id= '+response[i].id+' data-titulo='+encodeURI(response[i].descripcion_corta)+' data-subtitulo='+encodeURI(response[i].descripcion_larga)+' data-plantilla='+response[i].plantilla+'><i class="bi bi-pencil"></i></button><div class="modal fade" id="modal_editar" tabindex="-1" aria-labelledby="editar" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button></div><div class="modal-body"><form><h2>Editar campaña</h2><div class="col-auto"><label class="form-label">Id</label></div><div class="mb-3"><input type="text" class="form-control" id="id_modal" name="id"></div><div class="mb-3"><label class="form-label">Titulo</label><input type="text" class="form-control" id="titulo" name="descripcionCorta"></div><div class="mb-3"><label class="form-label">Subtitulo</label><input type="text" class="form-control" id="subtitulo" name="descripcionLarga"></div><div class="mb-3"><label class="form-label">Plantilla</label><textarea id="plantilla" name="plantilla" cols="57" rows="6"></textarea></div><br><div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button><button type="button" class="btn btn-editar" id="editar">Editar</button></div></form></div></div></div>'
 
             var columnaBorrar = document.createElement('td')
             columnaBorrar.innerHTML = '<button type="button" class="btn btn-eliminar" data-bs-toggle="modal" data-bs-target="#borrar" data-id ='+response[i].id+'><i class="bi bi-trash"></i></button><div class="modal fade" id="borrar" tabindex="-1" aria-labelledby="borrar" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cancelar"></button></div><div class="modal-body"><h5 id="titulo-borrar">¿Seguro que desea eliminar?</h5><input type="hidden" id="oculto_id"><br></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button><button type="submit" class="btn btn-eliminar" id="eliminar">Aceptar</button></div></div></div></div>'
@@ -84,12 +81,11 @@ jQuery.ajax({
         var button = $(event.relatedTarget)
         var id = button.data('id')
         var descripcionCorta = button.data('titulo')
-        console.log("titulo", descripcionCorta);
         var descripcionLarga = button.data('subtitulo')
         var modal = $(this)
         modal.find('.modal-body #id_modal').val(id)
-        modal.find('.modal-body #titulo').val(descripcionCorta)
-        modal.find('.modal-body #subtitulo').val(descripcionLarga)
+        modal.find('.modal-body #titulo').val(decodeURI(descripcionCorta))
+        modal.find('.modal-body #subtitulo').val(decodeURI(descripcionLarga))
     })
 
     /* PONEMOS EL BOTON A LA ESCUCHA PARA EDITAR LA CAMPAÑA */
@@ -218,6 +214,17 @@ function agregar_nueva_campanya() {
         "descripcionLarga": `${descripcionLarga}`,
         "plantilla": `${plantilla}`
     }
+
+    // Levantamos el modal
+    $('#modal_campanya').modal('show')
+    // Creamos el mensaje que queremos que se vea
+    let mensaje = 'Este proceso tardara 10 mint'
+    // Aqui hacemos que se vea nuestro mensaje
+    $('#modal_campanya').find('.modal-body p').text(mensaje)
+    // Ponemos el boton a la escucha y redirigimos la pagina
+    $('#btn_modal_campanya').click(function() {
+    $(location).attr("href", "/crearCampanya.html")
+})
 
     jQuery.ajax({
 
