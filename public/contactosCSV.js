@@ -10,14 +10,21 @@ function browserSupportFileUpload() {
 }
 // Method that reads and processes the selected file
 function upload(evt) {
+
+
+
     if (!browserSupportFileUpload()) {
         alert('The File APIs are not fully supported in this browser!');
         } else {
+
+            alert('Inicia proceso de csv 1')
+
             var data = null;
             var file = evt.target.files[0];
             var reader = new FileReader();
             reader.readAsText(file);
             reader.onload = function(event) {
+                alert('Estoy en unload');
                 var csvData = event.target.result;
                 data = $.csv.toArrays(csvData);
                 if (data && data.length > 0) {
